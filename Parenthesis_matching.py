@@ -1,15 +1,19 @@
-stack = []
-input_list=list(input("Enter a string with brackets: ").strip())
-for i in input_list:
-    if i == ')':
-        if(not stack):
-            print("illegal")
-            break
+def is_balanced_brackets(n):
+    stack = []
+    for i in n:
+        if i == ')':
+            if(not stack):
+                return False
+            else:
+                stack.pop()
         else:
-            stack.pop()
+            stack.append('(')
+    return True
+while True:
+    input_string = input("Enter a string with brackets (or 'q' to quit): ").strip()
+    if input_string == 'q':
+        break
+    if is_balanced_brackets(input_string):
+        print("legal")
     else:
-        stack.append('(')
-if(not stack):
-    print("legal")
-else:
-    print("illegal")
+        print("illegal")
